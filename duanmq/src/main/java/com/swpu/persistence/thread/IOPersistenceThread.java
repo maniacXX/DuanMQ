@@ -18,7 +18,7 @@ import java.util.List;
  * @time 下午2:05
  **/
 @Data
-public class PersistenceThread extends Thread{
+public class IOPersistenceThread extends Thread{
 
     private static Producer producer = new MQProducer();
 
@@ -38,13 +38,7 @@ public class PersistenceThread extends Thread{
             long time1 = System.currentTimeMillis();
 
             // 数据写入
-            messages.forEach(x -> {
-                try {
-                    ioPersistence.write(x);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-            });
+            messages.forEach(x -> ioPersistence.write(x));
 
             System.out.println(super.getName() + ":写入成功！");
             long time2 = System.currentTimeMillis();
