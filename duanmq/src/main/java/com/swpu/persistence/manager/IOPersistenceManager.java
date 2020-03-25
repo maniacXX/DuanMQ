@@ -1,7 +1,6 @@
-package com.swpu.persistence.model;
+package com.swpu.persistence.manager;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.swpu.config.ConstantConfig;
 import com.swpu.imitate.mqobject.message.Message;
 import com.swpu.model.Result;
@@ -9,8 +8,6 @@ import com.swpu.util.IODeal;
 import com.swpu.util.StringByteSwitch;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,7 +16,7 @@ import java.util.List;
  * @time 下午5:24
  **/
 
-public class IOPersistence extends Persistence {
+public class IOPersistenceManager extends PersistenceManager {
     // 操作文件
     private static File file = new File("duanmq/src/main/resource/storehouse/io/temp.txt");
 

@@ -3,13 +3,11 @@ package com.swpu.persistence.thread;
 import com.swpu.imitate.mqobject.message.Message;
 import com.swpu.imitate.mqobject.producer.MQProducer;
 import com.swpu.imitate.mqobject.producer.Producer;
-import com.swpu.persistence.model.IOPersistence;
-import com.swpu.persistence.model.NIOPersistence;
-import com.swpu.persistence.model.Persistence;
+import com.swpu.persistence.manager.NIOPersistenceManager;
+import com.swpu.persistence.manager.PersistenceManager;
 import com.swpu.util.RandomMessageBody;
 import lombok.Data;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class NIOPersistenceThread extends Thread{
 
     private static Producer producer = new MQProducer();
 
-    private static Persistence nioPersistence = new NIOPersistence();
+    private static PersistenceManager nioPersistence = new NIOPersistenceManager();
 
     @Override
     public void run() {

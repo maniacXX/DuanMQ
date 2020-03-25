@@ -1,4 +1,4 @@
-package com.swpu.persistence.model;
+package com.swpu.persistence.manager;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -17,7 +17,7 @@ import java.util.List;
  * 消息持久化
  **/
 
-public abstract class Persistence {
+public abstract class PersistenceManager {
 
     // 消息持久化到本地
     public abstract Result<Boolean> write(Message message);

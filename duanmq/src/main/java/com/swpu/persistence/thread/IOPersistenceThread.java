@@ -3,12 +3,11 @@ package com.swpu.persistence.thread;
 import com.swpu.imitate.mqobject.message.Message;
 import com.swpu.imitate.mqobject.producer.MQProducer;
 import com.swpu.imitate.mqobject.producer.Producer;
-import com.swpu.persistence.model.IOPersistence;
-import com.swpu.persistence.model.Persistence;
+import com.swpu.persistence.manager.IOPersistenceManager;
+import com.swpu.persistence.manager.PersistenceManager;
 import com.swpu.util.RandomMessageBody;
 import lombok.Data;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class IOPersistenceThread extends Thread{
 
     private static Producer producer = new MQProducer();
 
-    private static Persistence ioPersistence = new IOPersistence();
+    private static PersistenceManager ioPersistence = new IOPersistenceManager();
 
     @Override
     public void run() {

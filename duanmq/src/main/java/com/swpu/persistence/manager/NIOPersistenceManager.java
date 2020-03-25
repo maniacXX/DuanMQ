@@ -1,4 +1,4 @@
-package com.swpu.persistence.model;
+package com.swpu.persistence.manager;
 
 import com.alibaba.fastjson.JSON;
 import com.swpu.config.ConstantConfig;
@@ -11,8 +11,6 @@ import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -21,7 +19,7 @@ import java.util.List;
  * @time 下午5:25
  **/
 
-public class NIOPersistence extends Persistence {
+public class NIOPersistenceManager extends PersistenceManager {
 
     // 操作文件
     private static File file = new File("duanmq/src/main/resource/storehouse/nio/temp.txt");
