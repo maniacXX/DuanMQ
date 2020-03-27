@@ -17,6 +17,13 @@ public class MQProducer implements Producer{
     // 生产者名称
     private String producerName = "default";
 
+    public MQProducer() {
+    }
+
+    public MQProducer(String producerName) {
+        this.producerName = producerName;
+    }
+
     @Override
     public Result<Message> produce(Object o) {
         Message message = new Message();
