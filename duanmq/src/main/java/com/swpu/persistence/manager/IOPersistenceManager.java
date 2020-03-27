@@ -37,6 +37,22 @@ public class IOPersistenceManager extends PersistenceManager {
         }
     }
 
+    public Result<Boolean> write(String message) {
+        FileOutputStream fileOutputStream = null;
+        synchronized (file){
+            try {
+                fileOutputStream = new FileOutputStream(file, true);
+                fileOutputStream.write(StringByteSwitch.stringToByteArr(message));
+                return Result.success(true);
+            }catch (IOException e){
+                e.printStackTrace();
+            }finally {
+                IODeal.close(fileOutputStream);
+            }
+            return Result.fail(false);
+        }
+    }
+
     @Override
     public Result<List<Message>> read() {
         FileInputStream fileInputStream = null;
@@ -47,7 +63,7 @@ public class IOPersistenceManager extends PersistenceManager {
                 StringBuilder stringBuilder = new StringBuilder();
                 fileInputStream = new FileInputStream(file);
 
-                byte[] buf = new byte[1024];
+                byte[] buf = new byte[10240];
                 int length;
                 while ((length = fileInputStream.read(buf)) != -1)
                     stringBuilder.append(StringByteSwitch.byteArrToString(buf, 0, length));

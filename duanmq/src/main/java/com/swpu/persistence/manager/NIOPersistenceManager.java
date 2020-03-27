@@ -24,14 +24,13 @@ public class NIOPersistenceManager extends PersistenceManager {
     // 操作文件
     private static File file = new File("duanmq/src/main/resource/storehouse/nio/temp.txt");
 
-    @Override
-    public Result<Boolean> write(Message message){
+    public Result<Boolean> write(String message){
         FileOutputStream fileOutputStream = null;
         synchronized (file){
             try {
                 fileOutputStream = new FileOutputStream(file, true);
                 FileChannel channel = fileOutputStream.getChannel();
-                ByteBuffer byteBuffer = Charset.forName("utf8").encode(JSON.toJSONString(message) + ConstantConfig.messageSplit);
+                ByteBuffer byteBuffer = Charset.forName("utf8").encode(message);
                 while (channel.write(byteBuffer) != 0);
                 channel.close();
                 return Result.success(true);
@@ -47,6 +46,11 @@ public class NIOPersistenceManager extends PersistenceManager {
     }
 
     @Override
+    public Result<Boolean> write(Message message) {
+        return null;
+    }
+
+    @Override
     public Result<List<Message>> read() {
         FileInputStream fileInputStream = null;
         FileOutputStream fileOutputStream = null;
@@ -56,7 +60,7 @@ public class NIOPersistenceManager extends PersistenceManager {
                 FileChannel channel = fileInputStream.getChannel();
 
                 // 缓存区一次读取的字节数
-                int capacity = 1000;
+                int capacity = 10240;
                 ByteBuffer byteBuffer = ByteBuffer.allocate(capacity);
                 int length = channel.read(byteBuffer);
                 StringBuilder stringBuilder = new StringBuilder();

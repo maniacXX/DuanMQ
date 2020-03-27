@@ -1,5 +1,7 @@
 package com.swpu.persistence.thread;
 
+import com.alibaba.fastjson.JSON;
+import com.swpu.config.ConstantConfig;
 import com.swpu.imitate.mqobject.message.Message;
 import com.swpu.imitate.mqobject.producer.MQProducer;
 import com.swpu.imitate.mqobject.producer.Producer;
@@ -21,14 +23,14 @@ public class IOPersistenceThread extends Thread{
 
     private static Producer producer = new MQProducer();
 
-    private static PersistenceManager ioPersistence = new IOPersistenceManager();
+    private static IOPersistenceManager ioPersistence = new IOPersistenceManager();
 
     @Override
     public void run() {
         synchronized(ioPersistence){
             List<Message> messages = new ArrayList<>();
-            System.out.println(super.getName() + ":随机生成10000条消息");
-            for (int i = 0; i < 10000; i++){
+            System.out.println(super.getName() + ":随机生成50000条消息");
+            for (int i = 0; i < 50000; i++){
                 messages.add(producer.produce(RandomMessageBody.randomCreateMessageBody()).getResult());
                 //System.out.println(messages.get(i).toString());
             }
@@ -36,8 +38,15 @@ public class IOPersistenceThread extends Thread{
             System.out.println(super.getName() + ":持久化开始！");
             long time1 = System.currentTimeMillis();
 
+            StringBuilder stringBuilder = new StringBuilder();
+
             // 数据写入
-            messages.forEach(x -> ioPersistence.write(x));
+            List<Message> messageTemp = null;
+            for (int i = 0 ; i < 10 ; i++){
+                messageTemp = messages.subList(i * 5000, i * 5000 + 4999);
+                messageTemp.forEach(message -> stringBuilder.append(JSON.toJSONString(message) + ConstantConfig.messageSplit));
+                ioPersistence.write(stringBuilder.toString());
+            }
 
             System.out.println(super.getName() + ":写入成功！");
             long time2 = System.currentTimeMillis();

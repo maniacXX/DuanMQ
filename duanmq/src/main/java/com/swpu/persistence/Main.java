@@ -18,11 +18,11 @@ public class Main {
 
     // 用nio进行持久化
     private static void nioPersistenceTest() {
-        Thread thread1 = new IOPersistenceThread();
+        Thread thread1 = new NIOPersistenceThread();
         thread1.setName("nio_thread1");
-        Thread thread2 = new IOPersistenceThread();
+        Thread thread2 = new NIOPersistenceThread();
         thread2.setName("nio_thread2");
-        Thread thread3 = new IOPersistenceThread();
+        Thread thread3 = new NIOPersistenceThread();
         thread3.setName("nio_thread3");
 
         thread1.start();
