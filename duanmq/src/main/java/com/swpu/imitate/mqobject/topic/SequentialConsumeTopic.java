@@ -11,11 +11,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
+ * 虽然是topic，但其兼顾topic，broker，nameServer三者的作用
  * @author linyin
  * @date 2020/3/25
  * @time 下午5:23
  **/
-public class Topic {
+public class SequentialConsumeTopic {
     // 消息的偏移量，多个线程生产消息，所以要用原子类
     public static AtomicLong offset = new AtomicLong(0);
 
@@ -32,7 +33,7 @@ public class Topic {
     List<Thread> producers;
 
     // 初始化时要指定开启的消费者和生产者数量
-    public Topic(int produceNum, int consumerNum, int consumerChildThreadNum){
+    public SequentialConsumeTopic(int produceNum, int consumerNum, int consumerChildThreadNum){
         // 先初始化属性
         queueMap = new HashMap<>();
         queueList = new ArrayList<>();
@@ -107,7 +108,7 @@ public class Topic {
     }
 
     public static void setOffset(AtomicLong offset) {
-        Topic.offset = offset;
+        SequentialConsumeTopic.offset = offset;
     }
 
     public HashMap<String, LinkedBlockingQueue<Message>> getQueueMap() {

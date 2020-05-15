@@ -52,5 +52,21 @@ public class OrderProduceThread extends Thread{
             }
         }
     }
+
+    public OrderProducer getOrderProducer() {
+        return orderProducer;
+    }
+
+    public void setOrderProducer(OrderProducer orderProducer) {
+        this.orderProducer = orderProducer;
+    }
+
+    public LinkedBlockingQueue<Message> getQueue() {
+        return queue;
+    }
+
+    public void setQueue(LinkedBlockingQueue<Message> queue) {
+        this.queue = queue;
+    }
 }
 

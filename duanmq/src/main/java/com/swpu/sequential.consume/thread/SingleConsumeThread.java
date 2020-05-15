@@ -57,5 +57,21 @@ public class SingleConsumeThread extends Thread{
             }
         }
     }
+
+    public String getConsumerName() {
+        return consumerName;
+    }
+
+    public void setConsumerName(String consumerName) {
+        this.consumerName = consumerName;
+    }
+
+    public LinkedList<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(LinkedList<Message> messages) {
+        this.messages = messages;
+    }
 }
 

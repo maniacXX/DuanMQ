@@ -33,5 +33,13 @@ public class MQProducer implements Producer{
 
         return Result.success(message);
     }
+
+    public String getProducerName() {
+        return producerName;
+    }
+
+    public void setProducerName(String producerName) {
+        this.producerName = producerName;
+    }
 }
 

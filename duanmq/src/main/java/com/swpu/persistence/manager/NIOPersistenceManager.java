@@ -90,5 +90,13 @@ public class NIOPersistenceManager extends PersistenceManager {
             return Result.fail(null);
         }
     }
+
+    public static File getFile() {
+        return file;
+    }
+
+    public static void setFile(File file) {
+        NIOPersistenceManager.file = file;
+    }
 }
 

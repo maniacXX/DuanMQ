@@ -70,5 +70,45 @@ public class MultiConsumer implements Consumer{
 
         return Result.success(true);
     }
+
+    public String getConsumerName() {
+        return consumerName;
+    }
+
+    public void setConsumerName(String consumerName) {
+        this.consumerName = consumerName;
+    }
+
+    public int getThreadNum() {
+        return threadNum;
+    }
+
+    public void setThreadNum(int threadNum) {
+        this.threadNum = threadNum;
+    }
+
+    public Map<String, LinkedList<Message>> getMessagesMap() {
+        return messagesMap;
+    }
+
+    public void setMessagesMap(Map<String, LinkedList<Message>> messagesMap) {
+        this.messagesMap = messagesMap;
+    }
+
+    public List<LinkedList<Message>> getMessagesList() {
+        return messagesList;
+    }
+
+    public void setMessagesList(List<LinkedList<Message>> messagesList) {
+        this.messagesList = messagesList;
+    }
+
+    public List<Thread> getThreadList() {
+        return threadList;
+    }
+
+    public void setThreadList(List<Thread> threadList) {
+        this.threadList = threadList;
+    }
 }
 

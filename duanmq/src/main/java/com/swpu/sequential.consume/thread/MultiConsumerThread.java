@@ -4,7 +4,6 @@ import com.swpu.exception.ListIsNullException;
 import com.swpu.imitate.mqobject.consumer.Consumer;
 import com.swpu.imitate.mqobject.consumer.MultiConsumer;
 import com.swpu.imitate.mqobject.message.Message;
-import com.swpu.imitate.mqobject.topic.Topic;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -41,6 +40,22 @@ public class MultiConsumerThread extends Thread{
                 e.printStackTrace();
             }
         }
+    }
+
+    public Consumer getConsumer() {
+        return consumer;
+    }
+
+    public void setConsumer(Consumer consumer) {
+        this.consumer = consumer;
+    }
+
+    public LinkedBlockingQueue<Message> getQueue() {
+        return queue;
+    }
+
+    public void setQueue(LinkedBlockingQueue<Message> queue) {
+        this.queue = queue;
     }
 }
 

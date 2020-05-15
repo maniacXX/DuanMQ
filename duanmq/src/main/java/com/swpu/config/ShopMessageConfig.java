@@ -28,5 +28,6 @@ public class ShopMessageConfig {
     // 步骤名称4-支付
     public static String PAY = "pay";
 
+
 }
 

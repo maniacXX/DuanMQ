@@ -3,7 +3,7 @@ package com.swpu.imitate.mqobject.producer;
 import com.alibaba.fastjson.JSON;
 import com.swpu.config.ShopMessageConfig;
 import com.swpu.imitate.mqobject.message.Message;
-import com.swpu.imitate.mqobject.topic.Topic;
+import com.swpu.imitate.mqobject.topic.SequentialConsumeTopic;
 import com.swpu.model.Result;
 
 import java.util.*;
@@ -45,28 +45,28 @@ public class OrderProducer{
         messageBody.put(ShopMessageConfig.STEP_NAME, ShopMessageConfig.PLACE_ORDER);
         messageBody.put(ShopMessageConfig.PRODUCE_RANK, "1");
         message.setMessageBody(JSON.toJSONString(messageBody));
-        message.setOffset(Topic.offset.addAndGet(1));
+        message.setOffset(SequentialConsumeTopic.offset.addAndGet(1));
         list.add(new Message(message));
 
         // 发货
         messageBody.put(ShopMessageConfig.STEP_NAME, ShopMessageConfig.DELIVER);
         messageBody.put(ShopMessageConfig.PRODUCE_RANK, "2");
         message.setMessageBody(JSON.toJSONString(messageBody));
-        message.setOffset(Topic.offset.addAndGet(1));
+        message.setOffset(SequentialConsumeTopic.offset.addAndGet(1));
         list.add(new Message(message));
 
         // 收货
         messageBody.put(ShopMessageConfig.STEP_NAME, ShopMessageConfig.RECEIVE);
         messageBody.put(ShopMessageConfig.PRODUCE_RANK, "3");
         message.setMessageBody(JSON.toJSONString(messageBody));
-        message.setOffset(Topic.offset.addAndGet(1));
+        message.setOffset(SequentialConsumeTopic.offset.addAndGet(1));
         list.add(new Message(message));
 
         // 支付
         messageBody.put(ShopMessageConfig.STEP_NAME, ShopMessageConfig.PAY);
         messageBody.put(ShopMessageConfig.PRODUCE_RANK, "4");
         message.setMessageBody(JSON.toJSONString(messageBody));
-        message.setOffset(Topic.offset.addAndGet(1));
+        message.setOffset(SequentialConsumeTopic.offset.addAndGet(1));
         list.add(message);
 
         return Result.success(list);
