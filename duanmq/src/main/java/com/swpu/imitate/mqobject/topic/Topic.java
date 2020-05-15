@@ -3,7 +3,6 @@ package com.swpu.imitate.mqobject.topic;
 import com.swpu.imitate.mqobject.message.Message;
 import com.swpu.sequential.consume.thread.MultiConsumerThread;
 import com.swpu.sequential.consume.thread.OrderProduceThread;
-import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +15,6 @@ import java.util.concurrent.atomic.AtomicLong;
  * @date 2020/3/25
  * @time 下午5:23
  **/
-@Data
 public class Topic {
     // 消息的偏移量，多个线程生产消息，所以要用原子类
     public static AtomicLong offset = new AtomicLong(0);
@@ -102,6 +100,46 @@ public class Topic {
     public void continueAll(){
         continueConsumers();
         continueProducers();
+    }
+
+    public static AtomicLong getOffset() {
+        return offset;
+    }
+
+    public static void setOffset(AtomicLong offset) {
+        Topic.offset = offset;
+    }
+
+    public HashMap<String, LinkedBlockingQueue<Message>> getQueueMap() {
+        return queueMap;
+    }
+
+    public void setQueueMap(HashMap<String, LinkedBlockingQueue<Message>> queueMap) {
+        this.queueMap = queueMap;
+    }
+
+    public List<LinkedBlockingQueue<Message>> getQueueList() {
+        return queueList;
+    }
+
+    public void setQueueList(List<LinkedBlockingQueue<Message>> queueList) {
+        this.queueList = queueList;
+    }
+
+    public List<Thread> getConsumers() {
+        return consumers;
+    }
+
+    public void setConsumers(List<Thread> consumers) {
+        this.consumers = consumers;
+    }
+
+    public List<Thread> getProducers() {
+        return producers;
+    }
+
+    public void setProducers(List<Thread> producers) {
+        this.producers = producers;
     }
 }
 

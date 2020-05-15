@@ -10,7 +10,7 @@ import com.swpu.imitate.mqobject.topic.Topic;
 
 public class Main {
     public static void main(String[] args) {
-        Topic topic = new Topic(10, 3, 3);
+        Topic topic = new Topic(20, 3, 3);
 
         try {
             Thread.sleep(15000);

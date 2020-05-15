@@ -1,10 +1,8 @@
 package com.swpu.sequential.consume.thread;
 
 import com.swpu.exception.ListIsNullException;
-import com.swpu.exception.TopicIsNullException;
 import com.swpu.imitate.mqobject.message.Message;
 import com.swpu.imitate.mqobject.producer.OrderProducer;
-import com.swpu.imitate.mqobject.topic.Topic;
 
 import java.util.List;
 import java.util.UUID;

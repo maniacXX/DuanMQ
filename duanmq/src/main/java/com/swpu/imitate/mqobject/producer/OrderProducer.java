@@ -5,7 +5,6 @@ import com.swpu.config.ShopMessageConfig;
 import com.swpu.imitate.mqobject.message.Message;
 import com.swpu.imitate.mqobject.topic.Topic;
 import com.swpu.model.Result;
-import lombok.Data;
 
 import java.util.*;
 
@@ -14,7 +13,6 @@ import java.util.*;
  * @date 2020/3/25
  * @time 下午4:11
  **/
-@Data
 public class OrderProducer{
     // 生产者名称
     private String producerName = "default";
@@ -72,6 +70,18 @@ public class OrderProducer{
         list.add(message);
 
         return Result.success(list);
+    }
+
+    public String getProducerName() {
+        return producerName;
+    }
+
+    public void setProducerName(String producerName) {
+        this.producerName = producerName;
+    }
+
+    public int getHashValue() {
+        return hashValue;
     }
 }
 

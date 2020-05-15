@@ -42,8 +42,8 @@ public class IOPersistenceThread extends Thread{
 
             // 数据写入
             List<Message> messageTemp = null;
-            for (int i = 0 ; i < 10 ; i++){
-                messageTemp = messages.subList(i * 5000, i * 5000 + 4999);
+            for (int i = 0 ; i < 3 ; i++){
+                messageTemp = messages.subList(i * 16000, i * 16000 + 15999);
                 messageTemp.forEach(message -> stringBuilder.append(JSON.toJSONString(message) + ConstantConfig.messageSplit));
                 ioPersistence.write(stringBuilder.toString());
             }
